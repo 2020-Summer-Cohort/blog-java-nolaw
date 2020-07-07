@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/layout.css" rel="stylesheet"/>
+    <link href="/style.css" rel="stylesheet"/>
+
+    <title th:text="${post.title}"></title>
+</head>
+<div class="container">
+<header><h2 th:each="post: ${post}"></h2>
+    <h2 th:text="${post.title}">
+    </h2>
+</header>
+<body>
+
+<div class="author-list">
+<li class="tags" th:each="author: ${post.authors}">
+    <a th:text="${author.name}" th:href="@{'/authors/'+${author.id}}" >
+    </a>
+</li>
+</div>
+
+<p th:text="${post.publishDate}"></p>
+<br>
+<p th:text="${post.body}"></p>
+<li class="tags" th:each="tag: ${post.tags}">
+    <a th:text="${tag.name}" th:href="@{'/hashtags/'+${tag.id}}" >
+    </a>
+</li>
+<div class="tag-input">
+<form action="/hashtags/add" method="POST">
+    <label for="new-hashtags__name-input"></label>
+    <input type="text" name="hashtagName" id="new-hashtags__name-input" placeholder="Enter A New Hashtag">
+    <input type="hidden" name="title" th:value="${post.title}">
+    <button type="submit">Submit</button>
+</form>
+</div>
+</body>
+<footer>
+    <a href="/categories">Home</a>
+</footer>
+</div>
+</html>

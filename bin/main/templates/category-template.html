@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/layout.css"  rel="stylesheet"/>
+    <link href="/style.css" rel="stylesheet"/>
+    <title>My Blog</title>
+</head>
+
+<header><h1>My Travel Blog</h1></header>
+
+<body>
+<main>
+<ul>
+    <li th:each="category: ${categoryNames}">
+        <a th:text= "${category.name}" th:href="@{'/categories/'+${category.name}}"></a>
+    </li>
+</ul>
+</main>
+</body>
+</html>

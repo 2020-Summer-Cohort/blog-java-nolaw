@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/layout.css" rel="stylesheet"/>
+    <link href="/style.css" rel="stylesheet"/>
+    <title>Authors</title>
+</head>
+<div class="container">
+<header>
+    <h2 th:text="${author.name}">
+    </h2>
+</header>
+<body>
+<li th:each="post : ${author.posts}">
+    <a th:text="${post.title}" th:href="@{'/posts/'+${post.title}}">
+    </a>
+</li>
+</body>
+<footer>    <a href="/categories">Home</a></footer>
+</div>
+</html>

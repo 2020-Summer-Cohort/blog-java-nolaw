@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/layout.css" rel="stylesheet"/>
+    <link href="/style.css" rel="stylesheet"/>
+
+    <title>My Blog</title>
+</head>
+<div class="container">
+<header>
+    <h1 th:text="${category.name}">
+</h1>
+</header>
+<body>
+<main>
+<ul>
+    <li th:each="post: ${category.posts}">
+    <a  th:text= "${post.title}" th:href="@{'/posts/'+${post.title}}"></a>
+    </li>
+    </ul>
+
+    <p>Add a new post here:</p>
+    <div class="item"></div>
+        <form action="/post/add" method="POST">
+            <div>
+    <label for="authors">Choose an author:</label>
+    <select name="authors" id="authors" required>
+        <option th:each="author: ${authors}"
+                th:value="${author.name}" th:text="${author.name}"></option>
+    </select>
+            </div>
+            <div class="item"></div>
+            <div>
+        <input type="text" name="title" id="new-post__name-input" placeholder="Enter post title">
+            </div>
+            <div class="item"></div>
+            <div>
+        <input type="text" name="body" id="new-post__description-input" placeholder="Enter text here" class="text-box">
+            </div>
+            <div class="item"></div>
+            <label for="tags">Choose a tag:</label>
+            <select name="tags" id="tags" required>
+                <option th:each="tag: ${tags}"
+                        th:value="${tag.name}" th:text="${tag.name}">
+                </option>
+            </select>
+        <input type="hidden" name="categoryName" th:value="${category.name}">
+        <button type="submit">Submit</button>
+    </form>
+</main>
+</body>
+<footer><a href="/categories">Home</a>
+</footer>
+</div>
+</html>

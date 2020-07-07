@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/layout.css"  rel="stylesheet"/>
+    <link href="/style.css" rel="stylesheet"/>
+
+    <title>My Blog</title>
+</head>
+<header>
+    <h1 th:text="${category.name}">
+</h1>
+</header>
+<body>
+<main>
+<ul>
+    <li th:each="post: ${category.posts}">
+    <a  th:text= "${post.title}" th:href="@{'/posts/'+${post.title}}"></a>
+    </li>
+    </ul>
+</main>
+</body>
+<footer><a href="/categories">Back To Home</a>
+</footer>
+</html>
