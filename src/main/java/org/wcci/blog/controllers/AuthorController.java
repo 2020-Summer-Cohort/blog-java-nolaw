@@ -15,7 +15,7 @@ public class AuthorController {
     @Autowired
     AuthorStorage authorStorage;
 
-    @GetMapping("authors")
+    @GetMapping({"authors", ""})
     public String showAllAuthors(Model model) {
         model.addAttribute("authorName", authorStorage.findAllAuthors());
         return "allauthors-template";
